@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chief Sampler</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="index.css" />
+    
+  </head>
+  <body>
+    <h1>Pokemon</h1>
+    
+    <div class="pokemon">
+    <div id="wrapper">
+    <div class="pokemonChar">
+    </div>
+            </div>
+                </div>
+    <script>
+        
+        
+      
+        const process = (data) => { 
+            let page = $(`<div class="report"><ul></ul> </div>`);
+            page.css("border", "3px solid rgb(224, 187, 238)");
+        $("#wrapper").append(page);
+        console.log(data);
+         let pokemon = `${data.name} is a pokemon who is classified as a ${data.types} type pokemon. `
+        
+         console.log(pokemon);
+
+        $(".page ").append(pokemon);
+      
+        };
+        
+       const pokeInfo = () => {
+        $.ajax({
+          type: "GET",
+          url: "https://pokeapi.co/api/v2/pokemon/pikachu",
+         
+          dataType: "json",
+          success: function (result, status, xhr) {
+            process(result);
+          },
+          error: function (xhr, status, error) {
+            alert(
+              "Result: " +
+                status +
+                " " +
+                error +
+                " " +
+                xhr.status +
+                " " +
+                xhr.statusText
+                );
+              
+          },
+        });
+      
+        
+       
+      };
+
+    $(document).ready(pokeInfo);
+    
+    </script>
+  </body>
+</html>
